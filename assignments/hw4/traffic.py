@@ -2,6 +2,7 @@
 Justin Kerosetz
 HW 4
 """
+import math
 
 def main():
     road = eval(input("How many roads were surveyed?: "))
@@ -10,14 +11,17 @@ def main():
         day = str(i+1)
         days = eval(input("How many days was road " + day + " surveyed?: "))
         total_sum = 0
-        for _ in range(days):
-            number = float(input("How many cars traveled on Day " + str(_+1) + "? "))
+        for j in range(days):
+            number = int(input("How many cars traveled on Day " + str(j+1) + "? "))
             total_sum += number
             avg = total_sum / days
             carnum += number
             caravg = carnum / road
-        print("Road " + str(i+1), "average vehicles per day", avg)
+        roundavg = math.ceil(avg * 100) / 100
+        print("Road " + str(i+1), "average vehicles per day: ", roundavg)
+    roundcaravg = math.ceil(caravg * 100) / 100
     print("Total number of vehicles on all roads: ", carnum)
-    print("Average number of vehicles per road: ", caravg)
+    print("Average number of vehicles per road: ", roundcaravg)
+
 if __name__ == '__main__':
     main()
