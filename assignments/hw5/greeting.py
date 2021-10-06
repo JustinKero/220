@@ -1,48 +1,62 @@
-import turtle
-
-from graphics import *
+import time
+from graphics import GraphWin, Circle, Polygon, Point, Text, Line
 def main():
     win = GraphWin("Greeting", 700, 500)
-    message = Text(Point(350, 150), "Happy Valentines Day!")
+    win.setBackground("pink")
+    message = Text(Point(350, 50), "Happy Valentines Day!")
     message.draw(win)
-
-    # points for the shapes
-    pointA = Point(400, 175)
-    pointB = Point(300, 175)
-    pointC = Point(255, 200)
-    pointD = Point(445,200)
-    pointF = Point(350, 300)
-    pointG = Point (350, 200)
-    point1 = Point (-200, 450)
-    point2 = Point (-500, 375)
-    pointend = Point (500, 175)
-
+    # points for triangle and circles
+    point1 = Point(400, 175)
+    point2 = Point(300, 175)
+    point3 = Point(255, 200)
+    point4 = Point(445,200)
+    point5 = Point(350, 300)
+    point6 = Point(350, 200)
+    # arrow
+    point7 = Point(-200, 375)
+    point8 = Point(-500, 450)
+    # arrowhead
+    point9 = Point(-225, 350)
+    point10 = Point(-200, 375)
+    point11 = Point(-205, 410)
     # Applying points to draw shapes
-    circleA = Circle(pointA, 50)
-    circleB = Circle(pointB, 50)
-    circleC = Circle(pointG, 25)
-    triangle = Polygon(pointC, pointD, pointF)
-
-
+    circle1 = Circle(point1, 50)
+    circle2 = Circle(point2, 50)
+    circle3 = Circle(point6, 25)
+    circle1clone = circle1.clone()
+    circle3clone = circle3.clone()
+    triangle = Polygon(point3, point4, point5)
+    arrow = Line(point7, point8)
+    arrowhead = Polygon(point9, point10, point11)
     # Fill and outline Color
     triangle.setFill("red")
     triangle.setOutline("")
-    circleA.setFill("red")
-    circleA.setOutline("")
-    circleB.setFill("red")
-    circleB.setOutline("")
-    circleC.setFill("red")
-    circleC.setOutline("")
-
+    circle1.setFill("red")
+    circle1.setOutline("")
+    circle2.setFill("red")
+    circle2.setOutline("")
+    circle3.setFill("red")
+    circle3.setOutline("")
+    circle1clone.setFill("red")
+    circle1clone.setOutline("")
+    circle3clone.setFill("red")
+    circle3clone.setOutline("")
     # draw the shapes to the program
-    circleA.draw(win)
-    circleB.draw(win)
-    circleC.draw(win)
+    circle1.draw(win)
+    circle2.draw(win)
+    circle3.draw(win)
     triangle.draw(win)
-    for i in range():
-        arrow = Line(point1, point2)
-        arrow.draw(win)
-        print("")
-
+    arrow.draw(win)
+    arrowhead.draw(win)
+    for i in range(23):
+        arrow.move(30, -9)
+        arrowhead.move(30, -9)
+        time.sleep(.1)
+    text = Text(Point(350, 450), "Click anywhere to close")
+    text.draw(win)
+    circle1clone.draw(win)
+    circle3clone.draw(win)
+    win.getMouse()
+    win.close()
 if __name__ == '__main__':
     main()
