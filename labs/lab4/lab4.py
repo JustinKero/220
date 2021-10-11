@@ -1,25 +1,12 @@
 """
-Name: <your name goes here – first and last>
-<ProgramName>.py
+Name: Justin Kerosetz
+lab4.py
 """
 
 from graphics import *
-
+import math
 
 def squares():
-    """  <---  You can use tripled quotes to write a multi-line comment....
-
-    Modify the following function to:
-
-    Draw squares (20 X 20) instead of circles. Make sure that the center of the square
-    is at the point where the user clicks. Make the window 400 by 400.
-
-    Have each successive click draw an additional square on the screen (rather
-    than just moving the existing one).
-
-    Display a message on the window "Click again to quit" after the loop, and
-    wait for a final click before closing the window.
-    """
     # Creates a graphical window
     width = 400
     height = 400
@@ -30,11 +17,11 @@ def squares():
 
     # create a space to instruct user
     inst_pt = Point(width / 2, height - 10)
-    instructions = Text(inst_pt, "Click to move circle")
+    instructions = Text(inst_pt, "Click to move Square")
     instructions.draw(win)
 
-    # builds a circle
-    shape = Circle(Point(50, 50), 20)
+    # builds a square
+    shape = Rectangle(Point(50, 50), (20, 20))
     shape.setOutline("red")
     shape.setFill("red")
     shape.draw(win)
@@ -48,6 +35,9 @@ def squares():
         # point where the user clicked
         dx = p.getX() - c.getX()
         dy = p.getY() - c.getY()
+        cloneshape = shape.clone()
+        cloneshape.move(dx, dy)
+        cloneshape.draw(win)
         shape.move(dx, dy)
 
     win.getMouse()
@@ -55,21 +45,54 @@ def squares():
 
 
 def rectangle():
-    """
-    This program displays information about a rectangle drawn by the user.
-    Input: Two mouse clicks for the opposite corners of a rectangle.
-    Output: Draw the rectangle.
-         Print the perimeter and area of the rectangle.
-    Formulas: area = (length)(width)   and    perimeter = 2(length+width)
-    """
-    pass
+    win = GraphWin("Draw a Square")
+    win.setCoords(0.0, 0.0, 10.0, 10.0)
+    message = Text(Point(5, .5), "Click on two points")
+    message.draw(win)
+    p1 = win.getMouse()
+    p1.draw(win)
+    p2 = win.getMouse()
+    p2.draw(win)
 
+    rectangle = Rectangle(p1, p2)
+    rectangle.setFill("red")
+    rectangle.setOutline("blue")
+    rectangle.draw(win)
+    message.setText("Click anywhere to exit")
+    win.getMouse()
+    win.close()
+
+def circle():
+    win_width = 500
+    win_height = 500
+    win = GraphWin("Draw a Circle", win_width, win_height)
+    message = Text(Point(350, 450), "Click to find the circumference")
+    message.draw(win)
+    center = win.getMouse()
+    point = win.getMouse()
+
+
+    dx = point.getX() - center.getX()
+    dy = point.getY() - center.getY()
+
+    radpoint = Point(250, 100)
+    radius = math.sqrt(dx ** 2 + dy ** 2)
+    c = Circle(radius, 30)
+    radiustext = Text(radpoint, "The radius is: " + str(radius))
+    c.setFill("green")
+    c.setOutline("blue")
+    c.draw(win)
+    radiustext.draw(win)
+
+    message.setText("Click anywhere to exit")
+    win.getMouse()
+    win.close()
 
 def main():
     squares()
-    # rectangle()
-    # circle()
-    # pi2()
+    rectangle()
+    circle()
+
 
 
 main()
