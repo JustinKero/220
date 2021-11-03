@@ -78,7 +78,6 @@ def play():
                 display(board)
                 print("Its a tie")
                 break
-
         display(board)
         player = eval(input("O's turn.Enter a number 1 through 9: "))
         if legal(board, player):
