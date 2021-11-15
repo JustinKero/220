@@ -1,5 +1,5 @@
-'Justin Kerosetz'
-'Chapter 3'
+"""Justin Kerosetz
+Chapter 3"""
 
 import math
 import statistics
